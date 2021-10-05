@@ -1,38 +1,64 @@
 ﻿@page "/products"
-@inject ISearchProductUseCase  searchProduct 
-<h1>List of Product </h1>
+@inject ISearchProductUseCase  searchProduct
+<div class="text-center"><h1>List of Product </h1></div>
 <br />
 <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
 <br />
-<table class="table">
-    @if (products.Count() > 0)
-    {
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Image</th>
-            </tr>
-        </thead>
-    }
-    <tbody>
-        @if (products != null && products.Count() > 0)
+@*<table class="table">
+        @if (products.Count() > 0)
         {
-            @foreach (var product in products)
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Brand</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+        }
+        <tbody>
+            @if (products != null && products.Count() > 0)
             {
-                <ProductListItemsComponent Product="product"></ProductListItemsComponent>
+                @foreach (var product in products)
+                {
+                    <ProductListItemsComponent Product="product"></ProductListItemsComponent>
+                }
             }
-        }
-        else
+            else
+            {
+                <tr>
+                    <td colspan="3" class="alert-danger">products is not avaliable </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@if (products.Count() > 0 && products != null)
+{
+    <div class="card-deck">
+        @foreach (var product in products)
         {
-            <tr>
-                <td colspan="3" class="alert-danger">products is not avaliable </td>
-            </tr>
+            <div class="card m-3" style="min-width: 10rem; max-width:15.5%;">
+                <div class="card-header">
+                    <h3 class="text-center"> @product.Brand</h3>                    
+                </div>
+                <img class="card-img-top imageThumbnail" src="@product.ImageLink" />
+                <div class="card-footer text-center">
+                    <a href="@($"products/{product.Id}")" class="btn btn-primary m-1">View</a>                   
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+}
+else
+{
+    <tr>
+        <td colspan="3" class="alert-danger">products is not avaliable </td>
+    </tr>
+}
+
+
 @code {
     private IEnumerable<Product> products;
 
@@ -44,7 +70,8 @@
         products = searchProduct.Excecute();
     }
 
-    private void HandleSearch(string filter) {
+    private void HandleSearch(string filter)
+    {
         // Get specific product by Name
         products = searchProduct.Excecute(filter);
     }
