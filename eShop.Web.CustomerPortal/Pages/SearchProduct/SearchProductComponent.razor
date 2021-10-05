@@ -1,0 +1,52 @@
+﻿@page "/products"
+@inject ISearchProductUseCase  searchProduct 
+<h1>List of Product </h1>
+<br />
+<SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
+<br />
+<table class="table">
+    @if (products.Count() > 0)
+    {
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+    }
+    <tbody>
+        @if (products != null && products.Count() > 0)
+        {
+            @foreach (var product in products)
+            {
+                <ProductListItemsComponent Product="product"></ProductListItemsComponent>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="alert-danger">products is not avaliable </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@code {
+    private IEnumerable<Product> products;
+
+    // OnInitialized method is always called first time when application is loaded
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        // Get all the products
+        products = searchProduct.Excecute();
+    }
+
+    private void HandleSearch(string filter) {
+        // Get specific product by Name
+        products = searchProduct.Excecute(filter);
+    }
+
+}

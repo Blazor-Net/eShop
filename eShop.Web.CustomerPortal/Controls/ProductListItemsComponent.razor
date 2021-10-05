@@ -1,0 +1,20 @@
+﻿@if (Product != null)
+{
+    <tr>
+        <td>
+            <NavLink href="@($"products/{Product.Id}")">
+                @Product.Name
+            </NavLink>           
+        </td>
+        <td>@Product.Brand</td>
+        <td>@Product.Description</td>
+        <td>@Product.Price.ToString("c")</td>
+        <td><img class="card-img-top" src="@Product.ImageLink" alt="Card Image cap" /></td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public Product Product { get; set; }
+
+}
