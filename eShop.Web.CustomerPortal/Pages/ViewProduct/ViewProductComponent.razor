@@ -1,10 +1,33 @@
 ﻿@page "/products/{id:int}"
 
-@inject IViewProductUseCase viewProduct;
+@inject IViewProductUseCase viewProduct
+@inject IAddProductToCartUseCase addProdcutToCartUseCase
+@inject NavigationManager navigationManager
 
-<h3> Specfic Product details </h3>
+<h3 class="text-center"> Product details </h3>
 
-<ViewProductItemsComponent Product="product"></ViewProductItemsComponent>
+@if (product != null)
+{
+    <div class="card" style="width: 28rem;">
+        <img class="card-img-top" src="@product.ImageLink" alt="Card Image cap" />
+        <div class="card-body">
+            <h5 class="card-title">@product.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@product.Brand</h6>
+            <hr />
+            <p>
+                <b>Price:</b><label style="color:darkred">@product.Price.ToString("c")</label>
+            </p>
+            <p class="card-text">@product.Description</p>
+        </div>
+        <button class="btn btn-primary" @onclick="AddToCart">Add To Cart </button>
+    </div>
+    <br />
+    <NavLink href="products"><b>Back to Products Catalogue</b></NavLink>
+}
+else
+{
+
+}
 
 @code {
     private Product product;
@@ -14,8 +37,15 @@
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        if(Id > 0)
-       product = viewProduct.Excecute(Id);
-    } 
+        if (Id > 0)
+            product = viewProduct.Excecute(Id);
+    }
+
+    private void AddToCart()
+    {
+        addProdcutToCartUseCase.Execute(product.Id);
+        // navigate to root path
+        navigationManager.NavigateTo("/cart");
+    }
 
 }

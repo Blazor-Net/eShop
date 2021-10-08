@@ -1,9 +1,14 @@
 using eShop.DataStore.HardCoded;
+using eShop.ShoppingCart.LocalStorage;
 using eShop.UseCases.PluginInterfaces.DataStore;
+using eShop.UseCases.PluginInterfaces.UI;
 using eShop.UseCases.SearchProductScreen;
 using eShop.UseCases.SearchProductScreen.AbstractClasses;
+using eShop.UseCases.ShoppingCartScreen.AbstractClasses;
+using eShop.UseCases.ShoppingCartScreen.ConcreteClasses;
 using eShop.UseCases.ViewProductScreen;
 using eShop.UseCases.ViewProductScreen.AbstractClasses;
+using eShop.UseCases.ViewProductScreen.ConcreteClasses;
 using eShop.Web.Areas.Identity;
 using eShop.Web.Data;
 using Microsoft.AspNetCore.Builder;
@@ -39,14 +44,17 @@ namespace eShop.Web
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddSingleton<WeatherForecastService>();
 
-            // Add services here such Product and View Product
-            // singleton means : we create instance only once and used this through out application period
+            // Add Singleton here : we create instance only once and used this through out application period           
+            services.AddSingleton<WeatherForecastService>();            
             services.AddSingleton<IProductRepository, ProductRepository>();
-            // Transient means : we create instance every time in the application time period
+            // Add scoped here .......
+             services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
+            // Add Transient means : we create instance every time in the application time period
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
+            services.AddTransient<IAddProductToCartUseCase, AddProductToCartUseCase>();
+            services.AddTransient<IViewShoppingCartUseCase, ViewShoppingCartUseCase>();
 
         }
 

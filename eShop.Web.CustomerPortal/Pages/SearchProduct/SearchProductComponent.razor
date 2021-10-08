@@ -1,39 +1,14 @@
-﻿@page "/products"
+﻿
+@page "/products"
 @inject ISearchProductUseCase  searchProduct
-<div class="text-center"><h1>List of Product </h1></div>
+<div class="text-center"><h1>Product Catalogue  </h1></div>
 <br />
 <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
 <br />
-@*<table class="table">
-        @if (products.Count() > 0)
-        {
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Brand</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Image</th>
-                </tr>
-            </thead>
-        }
-        <tbody>
-            @if (products != null && products.Count() > 0)
-            {
-                @foreach (var product in products)
-                {
-                    <ProductListItemsComponent Product="product"></ProductListItemsComponent>
-                }
-            }
-            else
-            {
-                <tr>
-                    <td colspan="3" class="alert-danger">products is not avaliable </td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
-
+@if (products.Count() < 0 && products == null)
+{
+    <div class="spinner"></div>
+}
 @if (products.Count() > 0 && products != null)
 {
     <div class="card-deck">
@@ -41,11 +16,11 @@
         {
             <div class="card m-3" style="min-width: 10rem; max-width:15.5%;">
                 <div class="card-header">
-                    <h3 class="text-center"> @product.Brand</h3>                    
+                    <h3 class="text-center"> @product.Brand</h3>
                 </div>
                 <img class="card-img-top imageThumbnail" src="@product.ImageLink" />
                 <div class="card-footer text-center">
-                    <a href="@($"products/{product.Id}")" class="btn btn-primary m-1">View</a>                   
+                    <a href="@($"products/{product.Id}")" class="btn btn-primary m-1">View</a>
                 </div>
             </div>
         }
@@ -53,10 +28,10 @@
 }
 else
 {
-    <tr>
-        <td colspan="3" class="alert-danger">products is not avaliable </td>
-    </tr>
+    <text>Products not found</text>
 }
+
+
 
 
 @code {

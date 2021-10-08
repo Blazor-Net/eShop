@@ -1,0 +1,36 @@
+﻿@if (OrderLineItem != null && OrderLineItem.Product != null) 
+{
+<li class="row">
+    <div class="col">
+        <img src="@OrderLineItem.Product.ImageLink" alt="image" />
+    </div>
+    <div class="col">
+        <h5>@OrderLineItem.Product.Name</h5>
+        <div>
+            Quantity: &nbsp; &nbsp;
+            <input type="number" min="0" value="@OrderLineItem.Quantity" @onchange="HandleQuantityChange" />
+        </div>
+        <div>
+            Price: &nbsp; &nbsp;@OrderLineItem.Price.ToString("c")
+        </div>
+    </div>
+    <div class="col">
+        <button class="btn btn-dark" @onclick="@(() => DeleteProduct(OrderLineItem.ProductId))"></button>
+    </div>
+</li>
+}
+
+@code {
+
+    [Parameter]
+    public OrderLineItem OrderLineItem{ get; set; }
+
+    private void HandleQuantityChange()
+    {
+
+    }
+    private void DeleteProduct(int productId)
+    {
+
+    }
+}
