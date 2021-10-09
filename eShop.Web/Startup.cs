@@ -1,6 +1,8 @@
 using eShop.DataStore.HardCoded;
 using eShop.ShoppingCart.LocalStorage;
+using eShop.StateStore.DependencyInjection;
 using eShop.UseCases.PluginInterfaces.DataStore;
+using eShop.UseCases.PluginInterfaces.StateStore;
 using eShop.UseCases.PluginInterfaces.UI;
 using eShop.UseCases.SearchProductScreen;
 using eShop.UseCases.SearchProductScreen.AbstractClasses;
@@ -49,7 +51,9 @@ namespace eShop.Web
             services.AddSingleton<WeatherForecastService>();            
             services.AddSingleton<IProductRepository, ProductRepository>();
             // Add scoped here .......
-             services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
+            services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
+            services.AddScoped<IShoppingCartStateStore,ShoppingCartStateStore>();
+
             // Add Transient means : we create instance every time in the application time period
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
