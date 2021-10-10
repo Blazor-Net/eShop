@@ -31,20 +31,19 @@
                 <b>Order Total:</b>
             </div>
             <div>
-               <b>@itemsTotalPrice.ToString("c")</b>
+                <b>@itemsTotalPrice.ToString("c")</b>
             </div>
-        </div>
-        <button class="btn btn-primary" @onclick="PlaceOrder">Place your Order</button>
-
-    </div>
+        </div>        
+    </div> 
+    <button class="btn btn-primary" @onclick="PlaceOrder">Place your Order</button>
 </div>
 
 @code {
-        int itemCount = 0;
-        double itemsTotalPrice;
+    int itemCount;
+    double itemsTotalPrice;
 
-        [Parameter]
-        public Order O { get; set; }
+    [Parameter]
+    public Order O { get; set; }
 
     protected override void OnParametersSet()
     {
@@ -53,10 +52,14 @@
         if (O != null)
         {
             itemCount = O.LineItems.Count;
-            O.LineItems.ForEach(x => itemsTotalPrice += x.Price * x.Quantity);
+            itemsTotalPrice = 0;
+            //O.LineItems.ForEach(x => itemsTotalPrice += x.Price * x.Quantity);
+            foreach (var item in O.LineItems)
+            {
+                itemsTotalPrice += item.Price * item.Quantity; 
+            }
         }
     }
-
     private void PlaceOrder() {
 
 

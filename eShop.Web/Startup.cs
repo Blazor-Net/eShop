@@ -50,6 +50,7 @@ namespace eShop.Web
             // Add Singleton here : we create instance only once and used this through out application period           
             services.AddSingleton<WeatherForecastService>();            
             services.AddSingleton<IProductRepository, ProductRepository>();
+
             // Add scoped here .......
             services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
             services.AddScoped<IShoppingCartStateStore,ShoppingCartStateStore>();
@@ -59,6 +60,8 @@ namespace eShop.Web
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
             services.AddTransient<IAddProductToCartUseCase, AddProductToCartUseCase>();
             services.AddTransient<IViewShoppingCartUseCase, ViewShoppingCartUseCase>();
+            services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
+            services.AddTransient<IUpdateQuantityUseCase, UpdateQuantityUseCase>();
 
         }
 

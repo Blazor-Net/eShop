@@ -25,5 +25,10 @@ namespace eShop.StateStore.DependencyInjection
         {
             base.BroadCastStateChange();
         }
+
+        public void UpdateProductQuantity()
+        {
+            base.BroadCastStateChange();
+        }
     }
 }

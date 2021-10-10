@@ -21,7 +21,6 @@ namespace eShop.UseCases.ViewProductScreen.ConcreteClasses
         {
             var product = productRepository.GetProduct(productId);
             await shoppingCart.AddProductAsync(product);
-
             shoppingCartStateStore.UpdateLineItemsCount();
         }
     }

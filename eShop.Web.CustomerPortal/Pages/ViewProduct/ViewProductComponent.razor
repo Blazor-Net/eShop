@@ -43,8 +43,7 @@ else
 
     private void AddToCart()
     {
-        addProdcutToCartUseCase.Execute(product.Id);
-        // navigate to root path
+        addProdcutToCartUseCase.Execute(product.Id);        
         navigationManager.NavigateTo("/cart");
     }
 
