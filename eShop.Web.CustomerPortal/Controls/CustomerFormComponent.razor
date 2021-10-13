@@ -1,0 +1,47 @@
+﻿@if(customerVm != null) 
+{
+<EditForm Model="customerVm" class="form-line" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <ValidationSummary></ValidationSummary>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="customerVm.CustomerName" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="address">Address</label>
+        <InputText id="address" @bind-Value="customerVm.CustomerAddress" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="city">City</label>
+        <InputText id="city" @bind-Value="customerVm.CustomerCity" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="state">State</label>
+        <InputText id="state" @bind-Value="customerVm.CustomerStateProvince" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="country">Country</label>
+        <InputText id="country" @bind-Value="customerVm.CustomerCountry" class="form-control"></InputText>
+    </div>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</EditForm>
+
+}
+
+@code {
+    private CustomerViewModel customerVm;
+
+    [Parameter]
+    public EventCallback<CustomerViewModel> OnCustomerInfoSubmitted { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        customerVm = new CustomerViewModel();
+    }
+    private void HandleValidSubmit()
+    {
+        OnCustomerInfoSubmitted.InvokeAsync(customerVm);
+    }
+
+}

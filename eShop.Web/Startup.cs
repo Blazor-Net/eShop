@@ -1,6 +1,8 @@
+using eShop.CoreBusiness.Services;
+using eShop.CoreBusiness.Services.Interfaces;
 using eShop.DataStore.HardCoded;
-using eShop.ShoppingCart.LocalStorage;
 using eShop.StateStore.DependencyInjection;
+using eShop.UseCases.OrderConfirmationScreen.AbstractClass;
 using eShop.UseCases.PluginInterfaces.DataStore;
 using eShop.UseCases.PluginInterfaces.StateStore;
 using eShop.UseCases.PluginInterfaces.UI;
@@ -48,12 +50,13 @@ namespace eShop.Web
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             // Add Singleton here : we create instance only once and used this through out application period           
-            services.AddSingleton<WeatherForecastService>();            
+            services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddSingleton<IOrderRepository, OrderRepository>();
 
             // Add scoped here .......
             services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
-            services.AddScoped<IShoppingCartStateStore,ShoppingCartStateStore>();
+            services.AddScoped<IShoppingCartStateStore, ShoppingCartStateStore>();
 
             // Add Transient means : we create instance every time in the application time period
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
@@ -62,7 +65,9 @@ namespace eShop.Web
             services.AddTransient<IViewShoppingCartUseCase, ViewShoppingCartUseCase>();
             services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
             services.AddTransient<IUpdateQuantityUseCase, UpdateQuantityUseCase>();
-
+            services.AddTransient<IPlaceOrderUseCase, PlaceOrderUseCase>();
+            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IViewOrderConfirmationUseCase, ViewOrderConfirmationUseCase>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

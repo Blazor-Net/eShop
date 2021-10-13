@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.Web.CustomerPortal", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.ShoppingCart.LocalStorage", "Plugins\eShop.ShoppingCart.LocalStorage\eShop.ShoppingCart.LocalStorage.csproj", "{7134B9C6-AB16-4494-B2A0-832F59267188}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.StateStore.DependencyInjection", "Plugins\eShop.StateStore.DependencyInjection\eShop.StateStore.DependencyInjection.csproj", "{2AE73541-1864-4EBC-8975-8499A2BD6149}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.StateStore.DependencyInjection", "Plugins\eShop.StateStore.DependencyInjection\eShop.StateStore.DependencyInjection.csproj", "{2AE73541-1864-4EBC-8975-8499A2BD6149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

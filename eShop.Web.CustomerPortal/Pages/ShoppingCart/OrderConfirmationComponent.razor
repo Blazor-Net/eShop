@@ -1,0 +1,55 @@
+﻿@page "/orderconfirm/{uniqueId}"
+@inject IViewOrderConfirmationUseCase viewOrderConfirmationUseCase
+
+<h1>Order Confirmation</h1>
+<br />
+@if (order != null)
+{
+    <p><b>Shipping Info!</b></p>
+    <p>Unique Order Id: @order.UniqueId</p>
+    <b>@order.CustomerName</b>
+    <b>@order.CustomerAddress</b>
+    <b>@order.CustomerCity</b>
+    <b>@order.CustomerStateProvince</b>
+    <b>@order.CustomerCountry</b>
+    <br />
+    <OrderSummaryComponent O="order" HidePlaceOrderButton="true"></OrderSummaryComponent>
+    <br />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in order.LineItems)
+            {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price</td>                
+                <td><img src="@item.Product.ImageLink" /></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string UniqueId { get; set; }
+    private Order order;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        if (!string.IsNullOrWhiteSpace(UniqueId))
+        {
+            order = viewOrderConfirmationUseCase.Excecute(UniqueId);
+        }
+    }
+
+}
