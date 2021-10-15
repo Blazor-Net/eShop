@@ -2,6 +2,12 @@ using eShop.CoreBusiness.Services;
 using eShop.CoreBusiness.Services.Interfaces;
 using eShop.DataStore.HardCoded;
 using eShop.StateStore.DependencyInjection;
+using eShop.UseCases.AdminPortal.OrderDetailScreen.AbstractClasses;
+using eShop.UseCases.AdminPortal.OrderDetailScreen.ConcreteClasses;
+using eShop.UseCases.AdminPortal.OutStandingOrderScreen.AbstractClasses;
+using eShop.UseCases.AdminPortal.OutStandingOrderScreen.ConcreteClasses;
+using eShop.UseCases.AdminPortal.ProcessedOrdersScreen.AbstractClasses;
+using eShop.UseCases.AdminPortal.ProcessedOrdersScreen.ConcreteClasses;
 using eShop.UseCases.OrderConfirmationScreen.AbstractClass;
 using eShop.UseCases.PluginInterfaces.DataStore;
 using eShop.UseCases.PluginInterfaces.StateStore;
@@ -68,6 +74,11 @@ namespace eShop.Web
             services.AddTransient<IPlaceOrderUseCase, PlaceOrderUseCase>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IViewOrderConfirmationUseCase, ViewOrderConfirmationUseCase>();
+            services.AddTransient<IViewOutstandingOrderUseCase, ViewOutstandingOrderUseCase>();
+            services.AddTransient<IProcessOrderUseCase, ProcessOrderUseCase>();
+            services.AddTransient<IViewOrderDetailUseCase, ViewOrderDetailUseCase>();
+            services.AddTransient<IViewProcessedOrderUseCase, ViewProcessedOrderUseCase>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

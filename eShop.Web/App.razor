@@ -1,5 +1,7 @@
 <CascadingAuthenticationState>
-    <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true" AdditionalAssemblies=" new[] {typeof(eShop.Web.CustomerPortal.Pages.ViewProduct.ViewProductComponent).Assembly }">
+    <Router AppAssembly="@typeof(Program).Assembly" PreferExactMatches="@true" AdditionalAssemblies=" new[]
+                                                                                                      {typeof(eShop.Web.CustomerPortal.Pages.ViewProduct.ViewProductComponent).Assembly,
+                                                                                                      typeof(eShop.Web.AdminPortal.Pages.OutstandingOrderComponent).Assembly}">
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         </Found>
