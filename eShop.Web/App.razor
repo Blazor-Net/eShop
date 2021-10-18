@@ -3,7 +3,13 @@
                                                                                                       {typeof(eShop.Web.CustomerPortal.Pages.ViewProduct.ViewProductComponent).Assembly,
                                                                                                       typeof(eShop.Web.AdminPortal.Pages.OutstandingOrderComponent).Assembly}">
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" >
+                <NotAuthorized>
+                    <p class="alert-danger">
+                        <b>You don,t have permission to acces sthe resources , Please contact Admin</b>
+                    </p>                    
+                </NotAuthorized>
+            </AuthorizeRouteView>           
         </Found>
         <NotFound>
             <LayoutView Layout="@typeof(MainLayout)">

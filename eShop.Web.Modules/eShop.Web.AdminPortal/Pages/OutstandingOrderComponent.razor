@@ -1,4 +1,5 @@
 ﻿@page "/currentorders"
+@attribute [Authorize]
 @inject IViewOutstandingOrderUseCase viewOutstandingOrderUseCase
 <h3>Unprocesssed Orders</h3>
 <br />
@@ -9,7 +10,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
+        
         orders = viewOutstandingOrderUseCase.Execute();
     }
 
