@@ -26,7 +26,7 @@ namespace eShop.ShoppingCart.LocalStorage
             try
             {
                  order = await GetOrder();
-                order.AddProduct(product.Id, 1, product.Price);
+                order.AddProduct(product.ProductId, 1, product.Price);
                 await SetOrder(order);
                 return order;
             }

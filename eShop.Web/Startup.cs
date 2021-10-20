@@ -1,6 +1,8 @@
 using eShop.CoreBusiness.Services;
 using eShop.CoreBusiness.Services.Interfaces;
-using eShop.DataStore.HardCoded;
+using eShop.DataStore.SQL.Dapper;
+using eShop.DataStore.SQL.Dapper.Helpers;
+//using eShop.DataStore.HardCoded;
 using eShop.StateStore.DependencyInjection;
 using eShop.UseCases.AdminPortal.OrderDetailScreen.AbstractClasses;
 using eShop.UseCases.AdminPortal.OrderDetailScreen.ConcreteClasses;
@@ -58,22 +60,26 @@ namespace eShop.Web
 
             // Add Singleton here : we create instance only once and used this through out application period           
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<IProductRepository, ProductRepository>();
-            services.AddSingleton<IOrderRepository, OrderRepository>();
-
+            
             // Add scoped here .......
             services.AddScoped<IShoppingCart, eShop.ShoppingCart.LocalStorage.ShoppingCart>();
             services.AddScoped<IShoppingCartStateStore, ShoppingCartStateStore>();
 
             // Add Transient means : we create instance every time in the application time period
+            // Repositories 
+            services.AddTransient<IDataAccess>(sp => new DataAccess(Configuration.GetConnectionString("eShop")));
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            // Services
+            services.AddTransient<IOrderService, OrderService>();
+            // Use Cases 
             services.AddTransient<IViewProductUseCase, ViewProductUseCase>();
             services.AddTransient<ISearchProductUseCase, SearchProductUseCase>();
             services.AddTransient<IAddProductToCartUseCase, AddProductToCartUseCase>();
             services.AddTransient<IViewShoppingCartUseCase, ViewShoppingCartUseCase>();
             services.AddTransient<IDeleteProductUseCase, DeleteProductUseCase>();
             services.AddTransient<IUpdateQuantityUseCase, UpdateQuantityUseCase>();
-            services.AddTransient<IPlaceOrderUseCase, PlaceOrderUseCase>();
-            services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IPlaceOrderUseCase, PlaceOrderUseCase>();            
             services.AddTransient<IViewOrderConfirmationUseCase, ViewOrderConfirmationUseCase>();
             services.AddTransient<IViewOutstandingOrderUseCase, ViewOutstandingOrderUseCase>();
             services.AddTransient<IProcessOrderUseCase, ProcessOrderUseCase>();
