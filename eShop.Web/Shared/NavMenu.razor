@@ -4,18 +4,22 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
+
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="home" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-        </li>        
+        </li>
+        @if (currentUser.Identity.Name != null)
+        {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="products">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Product Catalogue
                 </NavLink>
-            </li>             
+            </li>
+        }       
         <AuthorizeView Roles="Administrators,Helpdesk">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="currentorders">
@@ -27,7 +31,7 @@
                     <span class="oi oi-basket" aria-hidden="true"></span> Processed Orders
                 </NavLink>
             </li>
-        </AuthorizeView>        
+        </AuthorizeView>
         <AuthorizeView Roles="Administrators">
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="administration">
@@ -35,16 +39,22 @@
                 </NavLink>
             </li>
         </AuthorizeView>
-       
-
     </ul>
 </div>
 
 @code {
+    private AuthenticationState authState;
+    [CascadingParameter]
+    public Task<AuthenticationState> authStateTask { get; set; }
+    ClaimsPrincipal currentUser;
+    protected override async Task OnInitializedAsync()
+    {
+        authState = await authStateTask;
+        // Get the current logged in User
+        currentUser = (await authStateTask).User;
+    }
     private bool collapseNavMenu = true;
-
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
