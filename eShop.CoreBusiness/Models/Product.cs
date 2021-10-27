@@ -14,6 +14,7 @@ namespace eShop.CoreBusiness.Models
         public double Price { get; set; }
         public string ImageLink { get; set; }
         public string Description { get; set; }
-
+        public int InStock { get; set; }
+        public string WikiLink { get; set; }
     }
 }

@@ -20,7 +20,13 @@
             </p>
             <p class="card-text">@product.Description</p>
         </div>
-        <button class="btn btn-primary" @onclick="AddToCart">Add To Cart </button>
+        @if (product.InStock <= 0)
+        {
+         <span class="badge badge-danger">Out of Stock</span>
+        }
+        else { 
+          <button class="btn btn-primary" @onclick="AddToCart">Add To Cart </button>
+        }        
     </div>
     <br />
     <NavLink href="products"><b>Back to Products Catalogue</b></NavLink>

@@ -15,15 +15,28 @@
             <div class="card-deck">
                 @foreach (var product in products)
                 {
-                    <div class="card m-3" style="min-width: 10rem; max-width:15.5%;">
-                        <div class="card-header">
-                            <h3 class="text-center"> @product.Brand</h3>
-                        </div>
-                        <img class="card-img-top imageThumbnail" src="@product.ImageLink" />
-                        <div class="card-footer text-center">
-                            <a href="@($"products/{product.ProductId}")" class="btn btn-primary m-1">View</a>
-                        </div>
+                <div class="card m-3" style="min-width: 10rem; max-width:15.5%;">
+                    <div class="card-header">
+                        <h3 class="text-center"> @product.Brand</h3>
                     </div>
+                    <img class="card-img-top imageThumbnail" src="@product.ImageLink" />
+                    @if (@product.InStock <= 0)
+                    {
+                        <button type="button" class="badge badge-light">
+                            <span class="badge badge-danger">Out of Stock</span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="badge badge-light">
+                            InStock <span class="badge badge-success">@product.InStock</span>
+                        </button>
+                    }
+
+                    <div class="card-footer text-center">
+                        <a href="@($"products/{product.ProductId}")" class="btn btn-primary m-1">View</a>
+                    </div>
+                </div>
                 }
             </div>
         }
