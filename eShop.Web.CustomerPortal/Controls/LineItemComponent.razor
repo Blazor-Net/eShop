@@ -17,6 +17,9 @@
             <div>
                 Price:&nbsp;&nbsp;<b>@LineItem.Price.ToString("c")</b>
             </div>
+            <div>
+                <span class="badge badge-danger">@ErrorMsg</span>               
+            </div>
         </div>
         <div class="col">
             <button class="btn btn-danger" @onclick="@(() => DeleteProduct(LineItem.ProductId))">Delete</button>
@@ -25,6 +28,8 @@
 }
 
 @code {
+
+    public string ErrorMsg { get; set; } = "";
 
     [Parameter]
     public OrderLineItem LineItem { get; set; }
@@ -45,11 +50,15 @@
             {
                 return;
             }
-
-            var order = await updateQuantityUseCase.Execute(LineItem.ProductId,qty);
-            await OnUpdateQuantity.InvokeAsync(order);
+            if (qty > LineItem.Product.InStock && qty != LineItem.Product.InStock)
+            {
+                ErrorMsg = $"Only stock avaliable-({LineItem.Product.InStock})";
+            }
+            else {
+                var order = await updateQuantityUseCase.Execute(LineItem.ProductId, qty);
+                await OnUpdateQuantity.InvokeAsync(order);
+            }
         }
-
     }
     private async void DeleteProduct(int productId)
     {
