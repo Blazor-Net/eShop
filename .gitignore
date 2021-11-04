@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/eShop.Web.Modules/eShop.Web.AdminPortal/Pages/OrderDetail.razor
+/eShop.Web.Modules/eShop.Web.AdminPortal/Pages/OutstandingOrder.razor
+/eShop.Web.Modules/eShop.Web.AdminPortal/Pages/ProcessedOrder.razor
+/eShop.Web.Modules/eShop.Web.AdminPortal/ViewModel/ProductVm.cs
