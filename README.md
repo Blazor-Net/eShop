@@ -47,11 +47,11 @@ Below diagram shows complete code implementation , I used Clean architecture des
  - eShopUseCases
  - eShop.CoreBusiness
  - Demo Dapper
- a. **eShop.Web.Modules**
+ 1. **eShop.Web.Modules**
     - eShop.Web.AdminPortal
     - eShop.Web.CustomerPortal
     - eShop.Web.Common
- b. **Plugins**
+ 1. **Plugins**
     -eShop.DataStore.HardCoded
     -eShop.DataStore.SQL.Dapper
     -eShop.ShoppingCart.LocalStorage
