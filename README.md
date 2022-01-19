@@ -51,11 +51,11 @@ Below diagram shows complete code implementation , I used Clean architecture des
     - eShop.Web.AdminPortal
     - eShop.Web.CustomerPortal
     - eShop.Web.Common
- 1. **Plugins**
-    -eShop.DataStore.HardCoded
-    -eShop.DataStore.SQL.Dapper
-    -eShop.ShoppingCart.LocalStorage
-    -eShop.StateStore.DependencyInjection
+ 2. **Plugins**
+    - eShop.DataStore.HardCoded
+    - eShop.DataStore.SQL.Dapper
+    - eShop.ShoppingCart.LocalStorage
+    - eShop.StateStore.DependencyInjection
 
 
 
