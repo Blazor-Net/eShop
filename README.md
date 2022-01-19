@@ -1,5 +1,12 @@
 # E-Shop in Blazor.Net 
 
+Finally I release first project after series of research work. I inspired from this course author work https://www.udemy.com/course/complete-blazor-course-e-commerce-app-clean-architecture/ . This course specially very good for educational purpose. The course explain very well how we develop front end and backend things in a clean style architecture.
+
+## How to run this project 
+ - Download project from LINK
+ -  Run **eShop.WEB** project ( kindly mark startup as a project)
+ -   NO need extra configuration ( When project executed it fills data via C# starup classes.
+
 # Customer potal :  
 
 # Step no : 1 ( Load the project from the above Link)
