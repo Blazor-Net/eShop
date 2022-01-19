@@ -1,4 +1,4 @@
-# E-Shop in Blazor.Net 
+# E-Shop in Blazor.Net C#
 
 Finally I release first project after series of research work. I inspired from this course author work https://www.udemy.com/course/complete-blazor-course-e-commerce-app-clean-architecture/ . This course specially very good for educational purpose. The course explain very well how we develop front end and backend things in a clean style architecture.
 
