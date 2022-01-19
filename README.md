@@ -33,5 +33,7 @@ In this Page Admin can process unprocessed orders and perform some administartio
 ![image](https://user-images.githubusercontent.com/11761314/150132673-a5efe437-a246-4535-8f17-cd35282076e2.png)
 # Step no : 4 ( Admin can see the processed orders)
 ![image](https://user-images.githubusercontent.com/11761314/150132761-0a6e35d1-4216-4040-ad26-d0e1c1abdfee.png)
+# Step no : 5( Admin can perfrom User administration)
+![image](https://user-images.githubusercontent.com/11761314/150132975-538d9ffc-62f0-4e1d-b0f5-7b1b5c9ad909.png)
 
 
