@@ -35,5 +35,30 @@ In this Page Admin can process unprocessed orders and perform some administartio
 ![image](https://user-images.githubusercontent.com/11761314/150132761-0a6e35d1-4216-4040-ad26-d0e1c1abdfee.png)
 # Step no : 5( Admin can perfrom User administration)
 ![image](https://user-images.githubusercontent.com/11761314/150132975-538d9ffc-62f0-4e1d-b0f5-7b1b5c9ad909.png)
+--------------------------------------------------------------------------------------------------------------------------------
+
+# Code implementation:
+Below diagram shows complete code implementation , I used Clean architecture design pattern which is provided by Microsoft for handling the Blazor .Net Projects 
+
+![image](https://user-images.githubusercontent.com/11761314/150133249-8d9679ba-ad26-470f-a2b6-6c75754bb36c.png)
+
+## .Net Projects separation details : 
+ - eShop.WEB
+ - eShopUseCases
+ - eShop.CoreBusiness
+ - Demo Dapper
+ 1. **eShop.Web.Modules**
+    - eShop.Web.AdminPortal
+    - eShop.Web.CustomerPortal
+    - eShop.Web.Common
+ 2. **Plugins**
+    -eShop.DataStore.HardCoded
+    -eShop.DataStore.SQL.Dapper
+    -eShop.ShoppingCart.LocalStorage
+    -eShop.StateStore.DependencyInjection
+
+
+
+
 
 
