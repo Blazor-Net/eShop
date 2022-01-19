@@ -44,7 +44,7 @@ Below diagram shows complete code implementation , I used Clean architecture des
 
 ## .Net Projects separation details : 
  - eShop.WEB
- - eShopUseCases
+ - eShop.UseCases
  - eShop.CoreBusiness
  - Demo Dapper
  1. **eShop.Web.Modules**
@@ -57,6 +57,35 @@ Below diagram shows complete code implementation , I used Clean architecture des
     - eShop.ShoppingCart.LocalStorage
     - eShop.StateStore.DependencyInjection
 
+
+## What is eShop.WEB ?
+
+ eShop.WEB is a Blazor .Net assembly project which consist of all razor components . This project holds the main UI Login and razor page settings. This is a core project we always run this project first because it contain all other projects references.  
+![image](https://user-images.githubusercontent.com/11761314/150142107-2b1ad35f-4194-45f7-a87d-ded590a39be0.png)
+
+## What is eShop.UseCases ?
+This project completely seperarte our Use cases logic forexample order detail screen , unprocessed orders , process orders. You can evaluate How I separate all apllication busines logic from each other and No modules are dependent to each other. one chang can not damage to other module. This is actuall essence of DI concept. 
+
+![image](https://user-images.githubusercontent.com/11761314/150142552-274c0198-e14e-430c-b3a4-520f3882bf19.png)
+
+## What is eShop.CoreBusiness ?
+In this project I written only business or application specfic classes and oder services 
+![image](https://user-images.githubusercontent.com/11761314/150143196-c95c8950-755c-40bc-993c-da912a6d9155.png)
+
+ ## What is DemoDapper ?
+ THis project simply connect our backend server logic to SQL server database. Demo Dapper is like a Bridge act  between backend logic to Data access layer logic.
+
+## what is eShop.Web.Modules ?
+This module is specific to admin portal , customer portal and common classes 
+![image](https://user-images.githubusercontent.com/11761314/150144138-f332c1b0-b61b-4db3-b99f-48123c03e65c.png)
+
+## what is Plugins ?
+This project specifically used for shopping Cart module, you can see in this project How Page can handle shopping Cart items without loosing the state. All that occuring via respecting projects 
+    - eShop.DataStore.HardCoded
+    - eShop.DataStore.SQL.Dapper
+    - eShop.ShoppingCart.LocalStorage
+    - eShop.StateStore.DependencyInjection
+![image](https://user-images.githubusercontent.com/11761314/150144485-4e4b3385-25d2-442c-ab1e-db8c74ffe3e8.png)
 
 
 
